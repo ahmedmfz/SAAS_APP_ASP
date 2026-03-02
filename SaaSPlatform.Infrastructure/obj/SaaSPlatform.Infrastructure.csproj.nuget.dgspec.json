@@ -1,0 +1,225 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/SaaSPlatform.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj",
+        "projectName": "SaaSPlatform.Application",
+        "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj",
+        "packagesPath": "/Users/ahmedmahfouz/.nuget/packages/",
+        "outputPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ahmedmahfouz/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj": {
+                "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.412/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj",
+        "projectName": "SaaSPlatform.Domain",
+        "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj",
+        "packagesPath": "/Users/ahmedmahfouz/.nuget/packages/",
+        "outputPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ahmedmahfouz/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.412/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/SaaSPlatform.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/SaaSPlatform.Infrastructure.csproj",
+        "projectName": "SaaSPlatform.Infrastructure",
+        "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/SaaSPlatform.Infrastructure.csproj",
+        "packagesPath": "/Users/ahmedmahfouz/.nuget/packages/",
+        "outputPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ahmedmahfouz/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj": {
+                "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj"
+              },
+              "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj": {
+                "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.6.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.412/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

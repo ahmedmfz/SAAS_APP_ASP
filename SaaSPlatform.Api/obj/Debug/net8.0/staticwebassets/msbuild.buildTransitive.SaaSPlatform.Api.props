@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/SaaSPlatform.Api.props" />
+</Project>
