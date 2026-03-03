@@ -12,8 +12,8 @@ using SaaSPlatform.Infrastructure.Persistence;
 namespace SaaSPlatform.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260303101927_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260303214638_SeedOrganizations")]
+    partial class SeedOrganizations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,22 @@ namespace SaaSPlatform.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Organizations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Acme Corp",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Beta Inc",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("SaaSPlatform.Domain.Entities.OrganizationSubscription", b =>
@@ -126,7 +142,7 @@ namespace SaaSPlatform.Infrastructure.Persistence.Migrations
                     b.Property<Guid>("OrganizationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -138,7 +154,25 @@ namespace SaaSPlatform.Infrastructure.Persistence.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
+                    b.HasIndex("OrganizationId");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SaaSPlatform.Domain.Entities.User", b =>
+                {
+                    b.HasOne("SaaSPlatform.Domain.Entities.Organization", "Organization")
+                        .WithMany("Users")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("SaaSPlatform.Domain.Entities.Organization", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

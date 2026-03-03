@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NA4vx5tWoj4=",
+  "dgSpecHash": "MvskCXP2F2Y=",
   "success": true,
   "projectFilePath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Api/SaaSPlatform.Api.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "/Users/ahmedmahfouz/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
     "/Users/ahmedmahfouz/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/ahmedmahfouz/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/Users/ahmedmahfouz/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/8.0.12/microsoft.aspnetcore.authentication.jwtbearer.8.0.12.nupkg.sha512",
     "/Users/ahmedmahfouz/.nuget/packages/microsoft.aspnetcore.openapi/8.0.18/microsoft.aspnetcore.openapi.8.0.18.nupkg.sha512",
     "/Users/ahmedmahfouz/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "/Users/ahmedmahfouz/.nuget/packages/microsoft.bcl.memory/9.0.0/microsoft.bcl.memory.9.0.0.nupkg.sha512",
@@ -47,8 +48,8 @@
     "/Users/ahmedmahfouz/.nuget/packages/microsoft.identitymodel.abstractions/8.6.0/microsoft.identitymodel.abstractions.8.6.0.nupkg.sha512",
     "/Users/ahmedmahfouz/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.6.0/microsoft.identitymodel.jsonwebtokens.8.6.0.nupkg.sha512",
     "/Users/ahmedmahfouz/.nuget/packages/microsoft.identitymodel.logging/8.6.0/microsoft.identitymodel.logging.8.6.0.nupkg.sha512",
-    "/Users/ahmedmahfouz/.nuget/packages/microsoft.identitymodel.protocols/6.35.0/microsoft.identitymodel.protocols.6.35.0.nupkg.sha512",
-    "/Users/ahmedmahfouz/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/6.35.0/microsoft.identitymodel.protocols.openidconnect.6.35.0.nupkg.sha512",
+    "/Users/ahmedmahfouz/.nuget/packages/microsoft.identitymodel.protocols/7.1.2/microsoft.identitymodel.protocols.7.1.2.nupkg.sha512",
+    "/Users/ahmedmahfouz/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/7.1.2/microsoft.identitymodel.protocols.openidconnect.7.1.2.nupkg.sha512",
     "/Users/ahmedmahfouz/.nuget/packages/microsoft.identitymodel.tokens/8.6.0/microsoft.identitymodel.tokens.8.6.0.nupkg.sha512",
     "/Users/ahmedmahfouz/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
     "/Users/ahmedmahfouz/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",

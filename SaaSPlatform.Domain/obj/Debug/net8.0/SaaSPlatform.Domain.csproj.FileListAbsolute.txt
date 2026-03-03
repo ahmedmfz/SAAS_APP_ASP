@@ -10,3 +10,15 @@ D:/work/donnet/SAAS_APP_ASP/SaaSPlatform.Domain/obj/Debug/net8.0/SaaSPlatform.Do
 D:/work/donnet/SAAS_APP_ASP/SaaSPlatform.Domain/obj/Debug/net8.0/refint/SaaSPlatform.Domain.dll
 D:/work/donnet/SAAS_APP_ASP/SaaSPlatform.Domain/obj/Debug/net8.0/SaaSPlatform.Domain.pdb
 D:/work/donnet/SAAS_APP_ASP/SaaSPlatform.Domain/obj/Debug/net8.0/ref/SaaSPlatform.Domain.dll
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/bin/Debug/net8.0/SaaSPlatform.Domain.deps.json
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/bin/Debug/net8.0/SaaSPlatform.Domain.dll
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/bin/Debug/net8.0/SaaSPlatform.Domain.pdb
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/SaaSPlatform.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/SaaSPlatform.Domain.AssemblyInfoInputs.cache
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/SaaSPlatform.Domain.AssemblyInfo.cs
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/SaaSPlatform.Domain.csproj.CoreCompileInputs.cache
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/SaaSPlatform.Domain.sourcelink.json
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/SaaSPlatform.Domain.dll
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/refint/SaaSPlatform.Domain.dll
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/SaaSPlatform.Domain.pdb
+/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/ref/SaaSPlatform.Domain.dll

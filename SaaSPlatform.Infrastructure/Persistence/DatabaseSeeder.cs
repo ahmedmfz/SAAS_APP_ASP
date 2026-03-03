@@ -1,0 +1,53 @@
+using Microsoft.EntityFrameworkCore;
+using SaaSPlatform.Domain.Entities;
+using SaaSPlatform.Domain.Enums;
+
+namespace SaaSPlatform.Infrastructure.Persistence;
+
+/// <summary>
+/// Laravel-style seeder — runs at startup, idempotent (safe to run multiple times).
+/// Add new seed methods here following the same pattern.
+/// </summary>
+public static class DatabaseSeeder
+{
+    public static async Task SeedAsync(AppDbContext db)
+    {
+        await SeedOrganizationsAsync(db);
+        await SeedSubscriptionPlansAsync(db);
+    }
+
+    // ------------------------------------------------------------------ //
+    //  Organizations
+    // ------------------------------------------------------------------ //
+    private static async Task SeedOrganizationsAsync(AppDbContext db)
+    {
+        // Idempotent: only insert if the table is empty
+        if (await db.Organizations.AnyAsync()) return;
+
+        var orgs = new List<Organization>
+        {
+            new() { Id = new Guid("11111111-1111-1111-1111-111111111111"), Name = "Acme Corp", Status = OrganizationStatus.Active },
+            new() { Id = new Guid("22222222-2222-2222-2222-222222222222"), Name = "Beta Inc",  Status = OrganizationStatus.Active },
+        };
+
+        db.Organizations.AddRange(orgs);
+        await db.SaveChangesAsync();
+    }
+
+    // ------------------------------------------------------------------ //
+    //  Subscription Plans
+    // ------------------------------------------------------------------ //
+    private static async Task SeedSubscriptionPlansAsync(AppDbContext db)
+    {
+        if (await db.SubscriptionPlans.AnyAsync()) return;
+
+        var plans = new List<SubscriptionPlan>
+        {
+            new() { Name = "Basic", ApiCallsPerMonth = 10_000,  StorageLimitMb = 500   },
+            new() { Name = "Pro",   ApiCallsPerMonth = 100_000, StorageLimitMb = 5_000 },
+        };
+
+        db.SubscriptionPlans.AddRange(plans);
+        await db.SaveChangesAsync();
+    }
+}

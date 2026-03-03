@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SaaSPlatform.Application.Common;
 using SaaSPlatform.Application.DTOs;
 using SaaSPlatform.Application.Interfaces;
 
@@ -14,9 +15,15 @@ public class AuthController : ControllerBase
 
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest req, CancellationToken ct)
-        => Ok(await _auth.RegisterAsync(req, ct));
+    {
+        var result = await _auth.RegisterAsync(req, ct);
+        return Ok(ApiResponse<AuthResponse>.Ok(result, "Registered successfully."));
+    }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest req, CancellationToken ct)
-        => Ok(await _auth.LoginAsync(req, ct));
+    {
+        var result = await _auth.LoginAsync(req, ct);
+        return Ok(ApiResponse<AuthResponse>.Ok(result, "Logged in successfully."));
+    }
 }

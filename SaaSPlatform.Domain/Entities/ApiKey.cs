@@ -1,0 +1,25 @@
+namespace SaaSPlatform.Domain.Entities;
+
+public class ApiKey
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+
+    public Guid OrganizationId { get; set; }
+
+    public string Name { get; set; } = default!;        // human label e.g. "Mobile App Key"
+
+    /// <summary>First 8 chars shown to user for identification e.g. "sk_live_ab12ef34"</summary>
+    public string Prefix { get; set; } = default!;
+
+    /// <summary>BCrypt/SHA-256 hash of the full key — never store plaintext</summary>
+    public string KeyHash { get; set; } = default!;
+
+    public bool IsActive { get; set; } = true;
+
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? ExpiresAt { get; set; }
+    public DateTime? LastUsedAt { get; set; }
+
+    // Navigation
+    public Organization Organization { get; set; } = default!;
+}
