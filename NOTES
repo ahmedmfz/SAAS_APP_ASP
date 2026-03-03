@@ -1,0 +1,41 @@
+//check if nuget packages are installed
+dotnet restore
+
+
+// Build the application
+dotnet build
+
+
+// Run the application
+dotnet run
+
+
+// Apply exsiting migration to database
+dotnet ef database update --project SaaSPlatform.Infrastructure --startup-project SaaSPlatform.Api
+
+
+// Create new migration
+dotnet ef migrations add InitialCreate --project SaaSPlatform.Infrastructure --startup-project SaaSPlatform.Api
+
+
+//clean reset 
+dotnet ef database drop --force --project SaaSPlatform.Infrastructure --startup-project SaaSPlatform.Api
+dotnet ef database update --project SaaSPlatform.Infrastructure --startup-project SaaSPlatform.Api
+
+
+//debug migration
+dotnet ef database update --project SaaSPlatform.Infrastructure --startup-project SaaSPlatform.Api --verbose
+
+
+// Clean build artifacts (like artisan optimize:clear)
+dotnet clean
+
+
+// Nuclear option — also wipe NuGet cache
+dotnet nuget locals all --clear
+
+
+//connection strings
+// "ConnectionStrings": {
+//   "Default": "Server=localhost\\SQLEXPRESS;Database=UsagePlatformDb;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;"
+// },

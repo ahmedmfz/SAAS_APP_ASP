@@ -1,0 +1,79 @@
+## -----------------------------------------------
+## Build output (the biggest culprits for slow uploads)
+## -----------------------------------------------
+[Bb]in/
+[Oo]bj/
+out/
+publish/
+
+## -----------------------------------------------
+## NuGet packages (restored via dotnet restore)
+## -----------------------------------------------
+[Pp]ackages/
+*.nupkg
+*.snupkg
+.nuget/
+nuget.config.user
+
+## -----------------------------------------------
+## .NET user secrets & local overrides
+## -----------------------------------------------
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+## -----------------------------------------------
+## Visual Studio / Rider / VS Code
+## -----------------------------------------------
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userprefs
+*.userosscache
+*.sln.docstates
+*.rsuser
+.ionide/
+
+## -----------------------------------------------
+## Rider / JetBrains
+## -----------------------------------------------
+_ReSharper*/
+*.DotSettings.user
+
+## -----------------------------------------------
+## Test results
+## -----------------------------------------------
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+*.coverage
+*.coveragexml
+
+## -----------------------------------------------
+## Entity Framework
+## -----------------------------------------------
+# (migrations are kept — only ignore temp EF files)
+*.ef.json
+
+## -----------------------------------------------
+## Logs & temp files
+## -----------------------------------------------
+*.log
+*.tmp
+*.temp
+Logs/
+logs/
+
+## -----------------------------------------------
+## OS files
+## -----------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+## -----------------------------------------------
+## Docker (optional — uncomment if not deploying via compose)
+## -----------------------------------------------
+# docker-compose.override.yml

@@ -1,1 +1,11 @@
-{"Version":1,"Hash":"qKyZgKrQII7QE2SWPKaVJ7Pd0TkdDyybDHzGdVKX+js=","Source":"SaaSPlatform.Api","BasePath":"_content/SaaSPlatform.Api","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "LV0+skpR0rrtSNuWAFjVL56ZJ42HuokfAh67W8Lgg5Q=",
+  "Source": "SaaSPlatform.Api",
+  "BasePath": "_content/SaaSPlatform.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
