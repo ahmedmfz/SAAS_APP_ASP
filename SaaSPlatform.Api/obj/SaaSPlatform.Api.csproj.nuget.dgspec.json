@@ -1,36 +1,43 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Api/SaaSPlatform.Api.csproj": {}
+    "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Api\\SaaSPlatform.Api.csproj": {}
   },
   "projects": {
-    "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Api/SaaSPlatform.Api.csproj": {
+    "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Api\\SaaSPlatform.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Api/SaaSPlatform.Api.csproj",
+        "projectUniqueName": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Api\\SaaSPlatform.Api.csproj",
         "projectName": "SaaSPlatform.Api",
-        "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Api/SaaSPlatform.Api.csproj",
-        "packagesPath": "/Users/ahmedmahfouz/.nuget/packages/",
-        "outputPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Api/obj/",
+        "projectPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Api\\SaaSPlatform.Api.csproj",
+        "packagesPath": "C:\\Users\\MVP-PC\\.nuget\\packages\\",
+        "outputPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/ahmedmahfouz/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\MVP-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj": {
-                "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj"
+              "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Application\\SaaSPlatform.Application.csproj": {
+                "projectPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Application\\SaaSPlatform.Application.csproj"
               },
-              "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/SaaSPlatform.Infrastructure.csproj": {
-                "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/SaaSPlatform.Infrastructure.csproj"
+              "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Infrastructure\\SaaSPlatform.Infrastructure.csproj": {
+                "projectPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Infrastructure\\SaaSPlatform.Infrastructure.csproj"
               }
             }
           }
@@ -44,7 +51,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -60,7 +68,7 @@
               "target": "Package",
               "version": "[8.0.12, )"
             },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.12, )"
             },
@@ -88,34 +96,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.412/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj": {
+    "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Application\\SaaSPlatform.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj",
+        "projectUniqueName": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Application\\SaaSPlatform.Application.csproj",
         "projectName": "SaaSPlatform.Application",
-        "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj",
-        "packagesPath": "/Users/ahmedmahfouz/.nuget/packages/",
-        "outputPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/obj/",
+        "projectPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Application\\SaaSPlatform.Application.csproj",
+        "packagesPath": "C:\\Users\\MVP-PC\\.nuget\\packages\\",
+        "outputPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/ahmedmahfouz/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\MVP-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj": {
-                "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj"
+              "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Domain\\SaaSPlatform.Domain.csproj": {
+                "projectPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Domain\\SaaSPlatform.Domain.csproj"
               }
             }
           }
@@ -129,7 +144,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -150,26 +166,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.412/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj": {
+    "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Domain\\SaaSPlatform.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj",
+        "projectUniqueName": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Domain\\SaaSPlatform.Domain.csproj",
         "projectName": "SaaSPlatform.Domain",
-        "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj",
-        "packagesPath": "/Users/ahmedmahfouz/.nuget/packages/",
-        "outputPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/",
+        "projectPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Domain\\SaaSPlatform.Domain.csproj",
+        "packagesPath": "C:\\Users\\MVP-PC\\.nuget\\packages\\",
+        "outputPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/ahmedmahfouz/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\MVP-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -187,7 +210,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -208,37 +232,44 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.412/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/SaaSPlatform.Infrastructure.csproj": {
+    "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Infrastructure\\SaaSPlatform.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/SaaSPlatform.Infrastructure.csproj",
+        "projectUniqueName": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Infrastructure\\SaaSPlatform.Infrastructure.csproj",
         "projectName": "SaaSPlatform.Infrastructure",
-        "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/SaaSPlatform.Infrastructure.csproj",
-        "packagesPath": "/Users/ahmedmahfouz/.nuget/packages/",
-        "outputPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Infrastructure/obj/",
+        "projectPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Infrastructure\\SaaSPlatform.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\MVP-PC\\.nuget\\packages\\",
+        "outputPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/ahmedmahfouz/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\MVP-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj": {
-                "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Application/SaaSPlatform.Application.csproj"
+              "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Application\\SaaSPlatform.Application.csproj": {
+                "projectPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Application\\SaaSPlatform.Application.csproj"
               },
-              "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj": {
-                "projectPath": "/Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/SaaSPlatform.Domain.csproj"
+              "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Domain\\SaaSPlatform.Domain.csproj": {
+                "projectPath": "D:\\work\\donnet\\SAAS_APP_ASP\\SaaSPlatform.Domain\\SaaSPlatform.Domain.csproj"
               }
             }
           }
@@ -252,15 +283,16 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Identity": {
+            "BCrypt.Net-Next": {
               "target": "Package",
-              "version": "[2.3.0, )"
+              "version": "[4.0.3, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -272,11 +304,23 @@
               "target": "Package",
               "version": "[8.0.12, )"
             },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.12, )"
             },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.EnvironmentVariables": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
@@ -305,7 +349,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.412/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

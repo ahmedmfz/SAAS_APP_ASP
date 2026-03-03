@@ -9,3 +9,15 @@
 /Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/refint/SaaSPlatform.Domain.dll
 /Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/SaaSPlatform.Domain.pdb
 /Users/ahmedmahfouz/Desktop/work/dotnet/SaaSPlatform/SaaSPlatform.Domain/obj/Debug/net8.0/ref/SaaSPlatform.Domain.dll
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\bin\Debug\net8.0\SaaSPlatform.Domain.deps.json
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\bin\Debug\net8.0\SaaSPlatform.Domain.dll
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\bin\Debug\net8.0\SaaSPlatform.Domain.pdb
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\obj\Debug\net8.0\SaaSPlatform.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\obj\Debug\net8.0\SaaSPlatform.Domain.AssemblyInfoInputs.cache
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\obj\Debug\net8.0\SaaSPlatform.Domain.AssemblyInfo.cs
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\obj\Debug\net8.0\SaaSPlatform.Domain.csproj.CoreCompileInputs.cache
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\obj\Debug\net8.0\SaaSPlatform.Domain.sourcelink.json
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\obj\Debug\net8.0\SaaSPlatform.Domain.dll
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\obj\Debug\net8.0\refint\SaaSPlatform.Domain.dll
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\obj\Debug\net8.0\SaaSPlatform.Domain.pdb
+D:\work\donnet\SAAS_APP_ASP\SaaSPlatform.Domain\obj\Debug\net8.0\ref\SaaSPlatform.Domain.dll

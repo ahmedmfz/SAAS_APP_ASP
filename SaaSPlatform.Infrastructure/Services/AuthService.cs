@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SaaSPlatform.Application.DTOs;
 using SaaSPlatform.Application.Interfaces;
@@ -6,13 +5,13 @@ using SaaSPlatform.Domain.Entities;
 using SaaSPlatform.Domain.Enums;
 using SaaSPlatform.Infrastructure.Persistence;
 
+
 namespace SaaSPlatform.Infrastructure.Services;
 
 public class AuthService : IAuthService
 {
     private readonly AppDbContext _db;
     private readonly IJwtTokenService _jwt;
-    private readonly PasswordHasher<User> _hasher = new();
 
     public AuthService(AppDbContext db, IJwtTokenService jwt)
     {
@@ -34,7 +33,8 @@ public class AuthService : IAuthService
             Email = email,
             Role = UserRole.Admin
         };
-        user.PasswordHash = _hasher.HashPassword(user, req.Password);
+
+        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(req.Password);
 
         // Assumption: new org starts on Basic plan for 30 days trial
         var sub = new OrganizationSubscription
@@ -59,14 +59,14 @@ public class AuthService : IAuthService
     {
         var email = req.Email.Trim().ToLowerInvariant();
 
-        var user = await _db.Users.FirstOrDefaultAsync(x => x.Email == email, ct);
+        var user = await _db.Users.FirstOrDefaultAsync(x => x.Email == email, ct); // QUERY TO DB TO GET USER BY EMAIL
         if (user is null) throw new UnauthorizedAccessException("Invalid credentials.");
 
-        var verify = _hasher.VerifyHashedPassword(user, user.PasswordHash, req.Password);
-        if (verify == PasswordVerificationResult.Failed)
-            throw new UnauthorizedAccessException("Invalid credentials.");
 
-        var token = _jwt.CreateToken(user);
+        var verify = BCrypt.Net.BCrypt.Verify(req.Password, user.PasswordHash); // VERIFY PASSWORD
+        if (!verify) throw new UnauthorizedAccessException("Invalid credentials.");
+
+        var token = _jwt.CreateToken(user); // CREATE JWT TOKEN
         return new AuthResponse(token, user.Id, user.OrganizationId, user.Role.ToString());
     }
 }
