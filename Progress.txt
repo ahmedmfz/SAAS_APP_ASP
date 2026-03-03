@@ -1,0 +1,14 @@
+	Item	Status
+✅	Layered project structure (Api/Application/Domain/Infrastructure)	Done
+✅	Organization, User, SubscriptionPlan, OrganizationSubscription	Done
+✅	ApiKey entity (Prefix + Hash)	Done
+✅	UsageRecord entity	Done
+✅	OrganizationUsageMonthly + RowVersion	Done
+✅	All indexes	Done
+✅	Register + Login with JWT (orgId + role)	Done
+✅	AdminOnly policy	Done
+✅	BCrypt password hashing	Done
+✅	Auto-migrate + Seeder on startup	Done
+✅	Centralized exception handling	Done
+✅	Unified ApiResponse + 422 validation	Done
+✅	Full .gitignore (bin, obj, secrets)	Done
