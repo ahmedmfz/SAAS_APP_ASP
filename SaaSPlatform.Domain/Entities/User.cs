@@ -13,4 +13,5 @@ public class User
     public UserRole Role { get; set; } = UserRole.Member;
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-}
+    // Navigation property: Many Users belong to One Organization
+    public Organization Organization { get; set; } = default!;}

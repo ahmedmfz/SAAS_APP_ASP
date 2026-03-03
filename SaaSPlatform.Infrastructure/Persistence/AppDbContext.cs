@@ -16,6 +16,13 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // Configure One-to-Many: Organization -> Users
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.Organization)
+            .WithMany(o => o.Users)
+            .HasForeignKey(u => u.OrganizationId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<User>()
             .HasIndex(x => x.Email)
             .IsUnique();

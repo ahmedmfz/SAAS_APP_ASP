@@ -8,4 +8,7 @@ public class Organization
     public string Name { get; set; } = default!;
     public OrganizationStatus Status { get; set; } = OrganizationStatus.Active;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    // Navigation property: One Organization has Many Users
+    public ICollection<User> Users { get; set; } = new List<User>();
 }
