@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using SaaSPlatform.Api.Filters;
 using SaaSPlatform.Api.Middleware;
 using SaaSPlatform.Application.Common;
 using SaaSPlatform.Application.Interfaces;
 using SaaSPlatform.Infrastructure.Persistence;
 using SaaSPlatform.Infrastructure.Security;
 using SaaSPlatform.Infrastructure.Services;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -147,11 +147,9 @@ using (var scope = app.Services.CreateScope())
 }
 
 // ── Middleware pipeline ──────────────────────────────────────────────────
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Always expose Swagger — needed for Docker/non-dev testing
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseMiddleware<ExceptionMiddleware>(); // centralized exception handling
 
@@ -159,27 +157,3 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
-
-// Create an OperationFilter that only adds the ApiKey requirements to endpoints with [ApiKeyAuth]
-public class ApiKeyAuthOperationFilter : IOperationFilter
-{
-    public void Apply(OpenApiOperation operation, OperationFilterContext context)
-    {
-        var hasApiKeyAuthAttribute = context.MethodInfo.DeclaringType!.GetCustomAttributes(true).OfType<ApiKeyAuthAttribute>().Any() ||
-                                     context.MethodInfo.GetCustomAttributes(true).OfType<ApiKeyAuthAttribute>().Any();
-
-        if (hasApiKeyAuthAttribute)
-        {
-            operation.Security.Add(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "ApiKey" }
-                    },
-                    Array.Empty<string>()
-                }
-            });
-        }
-    }
-}

@@ -45,6 +45,6 @@ public class ApiKeysController : ControllerBase
         var success = await _apiKeyService.RevokeApiKeyAsync(orgId, id, ct);
         if (!success) return NotFound(ApiResponse<object>.Fail("API Key not found or already revoked."));
 
-        return Ok(ApiResponse<object>.Ok(null, "API Key revoked successfully."));
+        return Ok(ApiResponse<object>.Ok(new { }, "API Key revoked successfully."));
     }
 }

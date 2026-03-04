@@ -20,6 +20,7 @@ public static class DatabaseSeeder
         await SeedOrganizationsAsync(db);
         await SeedSubscriptionPlansAsync(db);
         await SeedUsersAsync(db);
+        await SeedOrganizationSubscriptionsAsync(db);
     }
 
     // ------------------------------------------------------------------ //
@@ -74,6 +75,32 @@ public static class DatabaseSeeder
         };
 
         db.Users.Add(adminUser);
+        await db.SaveChangesAsync();
+    }
+
+    // ------------------------------------------------------------------ //
+    //  Organization Subscriptions
+    // ------------------------------------------------------------------ //
+    private static async Task SeedOrganizationSubscriptionsAsync(AppDbContext db)
+    {
+        // Check if there's already an active subscription for Acme Org
+        var now = DateTime.UtcNow;
+        if (await db.OrganizationSubscriptions.AnyAsync(s => s.OrganizationId == AcmeOrgId && s.EndAt >= now))
+            return;
+
+        // Get the Pro plan ID
+        var proPlan = await db.SubscriptionPlans.FirstOrDefaultAsync(p => p.Name == "Pro");
+        if (proPlan == null) return;
+
+        var subscription = new OrganizationSubscription
+        {
+            OrganizationId = AcmeOrgId,
+            PlanId         = proPlan.Id,
+            StartAt        = now.AddDays(-1),
+            EndAt          = now.AddYears(1)
+        };
+
+        db.OrganizationSubscriptions.Add(subscription);
         await db.SaveChangesAsync();
     }
 }
