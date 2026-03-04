@@ -33,10 +33,6 @@ namespace SaaSPlatform.Infrastructure.Persistence.Migrations
                 keyColumn: "Id",
                 keyValue: 2);
 
-            migrationBuilder.RenameColumn(
-                name: "PasswordHash",
-                table: "Users",
-                newName: "Password");
 
             migrationBuilder.CreateTable(
                 name: "ApiKeys",
@@ -151,11 +147,6 @@ namespace SaaSPlatform.Infrastructure.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "ApiKeys");
-
-            migrationBuilder.RenameColumn(
-                name: "Password",
-                table: "Users",
-                newName: "PasswordHash");
 
             migrationBuilder.InsertData(
                 table: "Organizations",

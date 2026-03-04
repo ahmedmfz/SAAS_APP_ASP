@@ -1,4 +1,5 @@
 using SaaSPlatform.Application.Common;
+using SaaSPlatform.Application.Exceptions;
 using System.Net;
 using System.Text.Json;
 
@@ -33,6 +34,7 @@ public class ExceptionMiddleware
         var (statusCode, message) = ex switch
         {
             InvalidOperationException  => (HttpStatusCode.BadRequest,   ex.Message),
+            RateLimitExceededException => (HttpStatusCode.TooManyRequests, ex.Message),
             UnauthorizedAccessException => (HttpStatusCode.Unauthorized, ex.Message),
             KeyNotFoundException        => (HttpStatusCode.NotFound,     ex.Message),
             _                          => (HttpStatusCode.InternalServerError, "An unexpected error occurred.")

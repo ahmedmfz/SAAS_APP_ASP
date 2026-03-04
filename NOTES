@@ -1,4 +1,4 @@
-//check if nuget packages are installed
+// check if nuget packages are installed
 dotnet restore
 
 
@@ -18,16 +18,16 @@ dotnet ef database update --project SaaSPlatform.Infrastructure --startup-projec
 dotnet ef migrations add InitialCreate --project SaaSPlatform.Infrastructure --startup-project SaaSPlatform.Api
 
 
-//clean reset 
+// clean reset 
 dotnet ef database drop --force --project SaaSPlatform.Infrastructure --startup-project SaaSPlatform.Api
 dotnet ef database update --project SaaSPlatform.Infrastructure --startup-project SaaSPlatform.Api
 
 
-//debug migration
+// debug migration
 dotnet ef database update --project SaaSPlatform.Infrastructure --startup-project SaaSPlatform.Api --verbose
 
 
-// Clean build artifacts (like artisan optimize:clear)
+// Clean build artifacts
 dotnet clean
 
 
@@ -35,7 +35,13 @@ dotnet clean
 dotnet nuget locals all --clear
 
 
-//connection strings
+
 // "ConnectionStrings": {
 //   "Default": "Server=localhost\\SQLEXPRESS;Database=UsagePlatformDb;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;"
+// },
+
+
+
+// "ConnectionStrings": {
+//    "Default": "Server=localhost,1433;Database=UsagePlatformDb;User Id=sa;Password=Str0ngP@ssw0rd!;TrustServerCertificate=True;"
 // },

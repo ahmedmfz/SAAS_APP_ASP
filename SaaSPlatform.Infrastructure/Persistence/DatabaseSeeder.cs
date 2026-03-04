@@ -10,10 +10,16 @@ namespace SaaSPlatform.Infrastructure.Persistence;
 /// </summary>
 public static class DatabaseSeeder
 {
+    // Default seeded credentials — for testing only
+    private static readonly Guid AcmeOrgId = new("11111111-1111-1111-1111-111111111111");
+    private const string AdminEmail    = "admin@acme.com";
+    private const string AdminPassword = "Admin@1234";  // BCrypt hashed below
+
     public static async Task SeedAsync(AppDbContext db)
     {
         await SeedOrganizationsAsync(db);
         await SeedSubscriptionPlansAsync(db);
+        await SeedUsersAsync(db);
     }
 
     // ------------------------------------------------------------------ //
@@ -48,6 +54,26 @@ public static class DatabaseSeeder
         };
 
         db.SubscriptionPlans.AddRange(plans);
+        await db.SaveChangesAsync();
+    }
+
+    // ------------------------------------------------------------------ //
+    //  Users
+    // ------------------------------------------------------------------ //
+    private static async Task SeedUsersAsync(AppDbContext db)
+    {
+        // Idempotent: only insert if admin user doesn't exist yet
+        if (await db.Users.AnyAsync(u => u.Email == AdminEmail)) return;
+
+        var adminUser = new User
+        {
+            Email          = AdminEmail,
+            Password       = BCrypt.Net.BCrypt.HashPassword(AdminPassword),
+            OrganizationId = AcmeOrgId,
+            Role           = UserRole.Admin
+        };
+
+        db.Users.Add(adminUser);
         await db.SaveChangesAsync();
     }
 }
