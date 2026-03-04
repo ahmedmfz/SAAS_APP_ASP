@@ -112,29 +112,40 @@ UPDATE OrganizationUsageMonthly
 
 ## 📈 Scalability Strategy
 
-### Horizontal Scaling
-The API is **stateless** — no in-memory sessions. Multiple instances can run behind a load balancer. All shared state is in SQL Server.
+### How you would scale horizontally
+The API is entirely **stateless**. It stores no in-memory sessions or state. We can scale it horizontally by running multiple API instances behind a load balancer (e.g., AWS ALB or NGINX). Because all state (usage counts, API keys) resides centrally in SQL Server with atomic concurrency handles, all instances can operate safely over the same database without race conditions.
 
-### High Write Volume (5M+ events/day)
-| Technique | Detail |
-|-----------|--------|
-| **Append-only `UsageRecords`** | Insert-only, no updates, no locks |
-| **Monthly counter row** | One atomic `UPDATE` per request vs. counting millions of rows |
-| **Index on `(OrganizationId, OccurredAt)`** | Analytics queries stay fast per tenant |
-| **Background queuing** | Events can be queued (Hangfire / Azure Service Bus) and flushed in batches for even higher throughput |
+### How you would handle high write volume
+To handle 5M+ API calls/day, I took three initial steps in the current design:
+1. **Append-only `UsageRecords`**: No locks or updates are ever made to past records; we only do fast `INSERT` operations.
+2. **Atomic Rollups**: We use a monthly counter table `OrganizationUsageMonthly` and increment it via a single atomic `UPDATE` query. We never do `SELECT COUNT(*)` on millions of rows.
+3. **Optimized Indexes**: `(Prefix)` on ApiKeys makes auth fast; `(OrganizationId, OccurredAt)` makes analytics grouping fast.
 
-### Table Partitioning
-`UsageRecords` can use SQL Server **range partitioning** on `YearMonth` — active partition stays hot, old months are archived without query degradation.
+### Whether you would partition tables
+**Yes.** For a production SaaS handling millions of events, the `UsageRecords` table will grow massive very quickly. I would implement **SQL Server Range Partitioning** on the `OccurredAt` column, partitioning by month (`YearMonth`). 
+- **Benefit:** Queries for "current month usage" only scan the hot, active partition.
+- **Benefit:** We can easily drop or archive entire partitions (months) of ancient data instantly without slow `DELETE` queries.
 
-### Read Replicas
-Analytics `GET /api/admin/usage` queries are read-only aggregations — ideal candidates to route to a **SQL Server Always On read replica**.
+### Whether you would use read replicas
+**Yes.** As read traffic (Dashboard Analytics, Admin Reports) grows, it competes with write traffic (`POST /api/usage/record`). 
+- I would set up a **SQL Server Always On Availability Group** with one primary Read-Write node and multiple secondary Read-Only replicas.
+- In the `.NET API`, I would configure two DB Contexts or two connection strings: one pointing to the read replica for `GET /api/admin/usage`, and one pointing to the primary for `POST` writes.
 
-### Double-Counting Prevention
-- Clients send an optional `IdempotencyKey` on `POST /api/usage/record`
-- A `UNIQUE` constraint on `(OrganizationId, IdempotencyKey)` in `UsageRecords` rejects duplicate submissions at the DB level
+### Whether you would introduce background processing
+**Yes.** If write throughput exceeds what the database can ingest synchronously, I would decouple the usage ingestion.
+- **Flow:** When a user calls `POST /api/usage/record`, the API immediately returns `202 Accepted` and drops the event payload into a message queue (like **RabbitMQ**, **Azure Service Bus**, or **Kafka**). 
+- **Background Worker:** A background worker (e.g., a .NET Hosted Service or Azure Function) reads the queue in large batches (e.g., 500 events at a time) and runs a fast `SqlBulkCopy` insert, drastically reducing database connection overhead.
 
-### Historical Archival
-Records older than N months can be moved to a cold archive table or blob storage via a nightly background job.
+### How you would prevent double counting
+Currently, if a client experiences a network timeout, they might retry the identical `POST` request, resulting in two usage records. To prevent this:
+- **Idempotency Keys:** I would require the client to generate a unique UUID for each request (`Idempotency-Key` header).
+- **Database Constraint:** I would add a `UNIQUE` constraint on `(OrganizationId, IdempotencyKey)` in the `UsageRecords` table. The database will physically reject the second insert, preventing double billing.
+
+### How you would archive historical data
+Historical usage data (e.g., > 1 year old) rarely needs to be queried instantly but must be kept for compliance.
+- I would use a **nightly background cron job** (via Quartz.NET or Hangfire).
+- The job would query `UsageRecords` older than 12 months, export them to cheaper cold storage (e.g., **Azure Blob Storage / AWS S3** in Parquet/CSV format).
+- Once securely uploaded, the job deletes those records from the active SQL Server to reclaim expensive SSD space and keep indexes small. If table partitioning is used, this becomes a fast metadata switch instead of a slow delete.
 
 ---
 
