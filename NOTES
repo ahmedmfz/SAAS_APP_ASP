@@ -35,11 +35,9 @@ dotnet clean
 dotnet nuget locals all --clear
 
 
-
 // "ConnectionStrings": {
 //   "Default": "Server=localhost\\SQLEXPRESS;Database=UsagePlatformDb;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;"
 // },
-
 
 
 // "ConnectionStrings": {

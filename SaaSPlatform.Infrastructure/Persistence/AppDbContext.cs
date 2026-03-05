@@ -74,9 +74,9 @@ public class AppDbContext : DbContext
             .HasIndex(m => new { m.OrganizationId, m.YearMonth })
             .IsUnique();
 
-        // EF Core optimistic concurrency via RowVersion
+        // EF Core optimistic concurrency
         modelBuilder.Entity<OrganizationUsageMonthly>()
             .Property(m => m.RowVersion)
-            .IsRowVersion();
+            .IsConcurrencyToken();
     }
 }
