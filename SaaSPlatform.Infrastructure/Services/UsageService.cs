@@ -173,7 +173,11 @@ public class UsageService : IUsageService
             .Include(x => x.ApiKey)
             .Where(x => x.OrganizationId == organizationId);
 
-       
+        // // Member gets restricted to only API keys they generated
+        // if (role != Domain.Enums.UserRole.Admin && userId.HasValue)
+        // {
+        //     query = query.Where(x => x.ApiKey.UserId == userId.Value);
+        // }
 
         return await query
             .OrderByDescending(x => x.OccurredAt)
