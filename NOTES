@@ -35,6 +35,17 @@ dotnet clean
 dotnet nuget locals all --clear
 
 
+
+//docker commands
+
+docker compose up -d          # start in background
+docker compose down           # stop everything
+docker compose logs -f api    # watch API logs live
+docker compose restart api    # restart just the API (after code changes)
+docker compose up --build -d  # rebuild + restart after code changes
+
+
+
 // "ConnectionStrings": {
 //   "Default": "Server=localhost\\SQLEXPRESS;Database=UsagePlatformDb;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=False;"
 // },
