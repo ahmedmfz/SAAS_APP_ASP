@@ -26,31 +26,19 @@ public class AuthService : IAuthService
         var exists = await _db.Users.AnyAsync(x => x.Email == email, ct);
         if (exists) throw new InvalidOperationException("Email already registered.");
 
-        // Validate the organization exists
+        // Validate the organization exists (since it's seeded)
         var org = await _db.Organizations.FindAsync(new object[] { req.OrganizationId }, ct);
         if (org is null) throw new InvalidOperationException("Organization not found.");
 
-        // Create user linked to the existing organization
+        // Create the user as an Admin for this seeded organization
         var user = new User
         {
             OrganizationId = org.Id,
             Email = email,
-            Role = UserRole.Admin
+            Role = UserRole.Admin, // Since org is pre-made, they represent the org Admin
+            Password = BCrypt.Net.BCrypt.HashPassword(req.Password)
         };
-
-        user.Password = BCrypt.Net.BCrypt.HashPassword(req.Password);
-
-        // Start on Basic plan for 30 days trial
-        var sub = new OrganizationSubscription
-        {
-            OrganizationId = org.Id,
-            PlanId = 1,
-            StartAt = DateTime.UtcNow,
-            EndAt = DateTime.UtcNow.AddDays(30)
-        };
-
         _db.Users.Add(user);
-        _db.OrganizationSubscriptions.Add(sub);
 
         await _db.SaveChangesAsync(ct);
 

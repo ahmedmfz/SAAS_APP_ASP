@@ -8,7 +8,6 @@ namespace SaaSPlatform.Api.Controllers;
 
 [ApiController]
 [Route("api/apikeys")]
-[Authorize(Policy = "AdminOnly")] // Only authenticated Admins can manage keys
 public class ApiKeysController : ControllerBase
 {
     private readonly IApiKeyService _apiKeyService;
