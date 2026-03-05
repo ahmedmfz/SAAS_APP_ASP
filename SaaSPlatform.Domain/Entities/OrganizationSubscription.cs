@@ -8,6 +8,10 @@ public class OrganizationSubscription
 
     public int PlanId { get; set; }
 
+    // Snapshot of limits at the time of subscription purchase
+    public int ApiCallsMonthly { get; set; }
+    public int ApiCallsPerUser { get; set; }
+
     public DateTime StartAt { get; set; }
     public DateTime EndAt { get; set; }
 }

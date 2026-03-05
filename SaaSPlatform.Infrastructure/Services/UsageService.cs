@@ -21,47 +21,78 @@ public class UsageService : IUsageService
         // 1. Validate Active Subscription and Limits
         var activeSub = await _db.OrganizationSubscriptions
             .Where(x => x.OrganizationId == organizationId && x.StartAt <= now && x.EndAt >= now)
-            .Join(_db.SubscriptionPlans, sub => sub.PlanId, plan => plan.Id, (sub, plan) => new { sub, plan })
             .FirstOrDefaultAsync(ct);
 
         if (activeSub == null)
             throw new InvalidOperationException("No active subscription found.");
 
-        int monthlyLimit = activeSub.plan.ApiCallsPerMonth;
+        int orgMonthlyLimit  = activeSub.ApiCallsMonthly;
+        int userMonthlyLimit = activeSub.ApiCallsPerUser;
+
+        // Resolve which user owns this API key (nullable)
+        var apiKeyUserId = await _db.ApiKeys
+            .Where(k => k.Id == apiKeyId)
+            .Select(k => k.UserId)
+            .FirstOrDefaultAsync(ct);
 
         using var transaction = await _db.Database.BeginTransactionAsync(ct);
 
-        // 2. Atomic Increment Query using SQL Server Raw
-        var rowsAffected = await _db.Database.ExecuteSqlRawAsync(@"
+        // 2. Enforce ORG-WIDE monthly limit (atomic SQL increment)
+        var orgRowsAffected = await _db.Database.ExecuteSqlRawAsync(@"
             UPDATE OrganizationUsageMonthly 
             SET ApiCallCount = ApiCallCount + 1 
             WHERE OrganizationId = {0} 
               AND YearMonth = {1} 
-              AND ApiCallCount < {2}", 
-            organizationId, yearMonth, monthlyLimit);
+              AND ApiCallCount < {2}",
+            organizationId, yearMonth, orgMonthlyLimit);
 
-        // 3. Handle First-Time Row Creation or Rate Limit Hit
-        if (rowsAffected == 0)
+        if (orgRowsAffected == 0)
         {
-            // Let's check if the row exists
             var existing = await _db.OrganizationUsageMonthly.FirstOrDefaultAsync(
                 x => x.OrganizationId == organizationId && x.YearMonth == yearMonth, ct);
 
             if (existing != null)
+                throw new RateLimitExceededException("Organization monthly API call limit exceeded.");
+
+            // First usage this month for the org
+            _db.OrganizationUsageMonthly.Add(new Domain.Entities.OrganizationUsageMonthly
             {
-                // Row exists but no rows affected by UPDATE means: ApiCallCount >= monthlyLimit
-                throw new RateLimitExceededException("Monthly API call limit exceeded.");
-            }
-            else
+                OrganizationId = organizationId,
+                YearMonth      = yearMonth,
+                ApiCallCount   = 1
+            });
+            await _db.SaveChangesAsync(ct);
+        }
+
+        // 3. Enforce PER-USER monthly limit (only if key is linked to a user)
+        if (apiKeyUserId.HasValue)
+        {
+            var userId = apiKeyUserId.Value;
+
+            var userRowsAffected = await _db.Database.ExecuteSqlRawAsync(@"
+                UPDATE UserUsageMonthly 
+                SET ApiCallCount = ApiCallCount + 1 
+                WHERE UserId = {0} 
+                  AND YearMonth = {1} 
+                  AND ApiCallCount < {2}",
+                userId, yearMonth, userMonthlyLimit);
+
+            if (userRowsAffected == 0)
             {
-                // Row does not exist for this month yet. Insert the initial record (1 used)
-                var initialRecord = new OrganizationUsageMonthly
+                var existingUser = await _db.UserUsageMonthly.FirstOrDefaultAsync(
+                    x => x.UserId == userId && x.YearMonth == yearMonth, ct);
+
+                if (existingUser != null)
+                    throw new RateLimitExceededException("User monthly API call limit exceeded.");
+
+                // First usage this month for this user
+                _db.UserUsageMonthly.Add(new Domain.Entities.UserUsageMonthly
                 {
+                    UserId         = userId,
                     OrganizationId = organizationId,
-                    YearMonth = yearMonth,
-                    ApiCallCount = 1
-                };
-                _db.OrganizationUsageMonthly.Add(initialRecord);
+                    YearMonth      = yearMonth,
+                    ApiCallCount   = 1
+                });
                 await _db.SaveChangesAsync(ct);
             }
         }
@@ -70,10 +101,10 @@ public class UsageService : IUsageService
         var usageRecord = new UsageRecord
         {
             OrganizationId = organizationId,
-            ApiKeyId = apiKeyId,
-            Endpoint = request.Endpoint,
-            StatusCode = request.StatusCode,
-            OccurredAt = now
+            ApiKeyId       = apiKeyId,
+            Endpoint       = request.Endpoint,
+            StatusCode     = request.StatusCode,
+            OccurredAt     = now
         };
 
         _db.UsageRecords.Add(usageRecord);
@@ -133,5 +164,32 @@ public class UsageService : IUsageService
             RemainingQuota = remainingQuota,
             Breakdown = breakdown
         };
+    }
+
+    public async Task<List<UsageRecordResponse>> GetUsageRecordsAsync(Guid organizationId, Guid? userId, Domain.Enums.UserRole role, CancellationToken ct)
+    {
+        var query = _db.UsageRecords
+            .AsNoTracking()
+            .Include(x => x.ApiKey)
+            .Where(x => x.OrganizationId == organizationId);
+
+        // Member gets restricted to only API keys they generated
+        if (role != Domain.Enums.UserRole.Admin && userId.HasValue)
+        {
+            query = query.Where(x => x.ApiKey.UserId == userId.Value);
+        }
+
+        return await query
+            .OrderByDescending(x => x.OccurredAt)
+            .Take(100) // Return latest 100 for safety, add pagination later if needed
+            .Select(x => new UsageRecordResponse
+            {
+                Id = x.Id,
+                ApiKeyId = x.ApiKeyId,
+                Endpoint = x.Endpoint,
+                StatusCode = x.StatusCode,
+                OccurredAt = x.OccurredAt
+            })
+            .ToListAsync(ct);
     }
 }

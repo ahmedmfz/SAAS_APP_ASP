@@ -13,7 +13,7 @@ public class ApiKeyService : IApiKeyService
 
     public ApiKeyService(AppDbContext db) => _db = db;
 
-    public async Task<CreateApiKeyResponse> GenerateApiKeyAsync(Guid organizationId, CreateApiKeyRequest request, CancellationToken ct)
+    public async Task<CreateApiKeyResponse> GenerateApiKeyAsync(Guid organizationId, Guid? userId, CreateApiKeyRequest request, CancellationToken ct)
     {
         // Generate a 32-byte secure random key
         var keyBytes = new byte[32];
@@ -33,6 +33,7 @@ public class ApiKeyService : IApiKeyService
         var apiKey = new ApiKey
         {
             OrganizationId = organizationId,
+            UserId = userId,            // Link to user for per-user rate limiting
             Name = request.Name,
             Prefix = prefix,
             KeyHash = keyHash

@@ -10,4 +10,5 @@ public interface IUsageService
     /// </summary>
     Task<bool> RecordUsageAsync(Guid organizationId, Guid apiKeyId, RecordUsageRequest request, CancellationToken ct);
     Task<UsageAnalyticsResponse> GetUsageAnalyticsAsync(Guid organizationId, DateTime from, DateTime to, CancellationToken ct);
+    Task<List<UsageRecordResponse>> GetUsageRecordsAsync(Guid organizationId, Guid? userId, Domain.Enums.UserRole role, CancellationToken ct);
 }

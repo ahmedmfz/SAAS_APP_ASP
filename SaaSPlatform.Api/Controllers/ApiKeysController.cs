@@ -17,11 +17,14 @@ public class ApiKeysController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> GenerateKey([FromBody] CreateApiKeyRequest request, CancellationToken ct)
     {
-        // Extract orgId from the JWT Claims
+        // Extract orgId and userId from the JWT Claims
         var orgIdClaim = User.Claims.FirstOrDefault(c => c.Type == "orgId")?.Value;
         if (!Guid.TryParse(orgIdClaim, out var orgId)) return Unauthorized();
 
-        var result = await _apiKeyService.GenerateApiKeyAsync(orgId, request, ct);
+        var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value;
+        Guid? userId = Guid.TryParse(userIdClaim, out var uid) ? uid : null;
+
+        var result = await _apiKeyService.GenerateApiKeyAsync(orgId, userId, request, ct);
         return Ok(ApiResponse<CreateApiKeyResponse>.Ok(result, "API Key generated securely. Warning: Please store the PlaintextKey now, it will not be shown again."));
     }
 

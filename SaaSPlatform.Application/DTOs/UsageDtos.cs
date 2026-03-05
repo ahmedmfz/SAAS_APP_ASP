@@ -16,3 +16,12 @@ public class RecordUsageRequest
     [MaxLength(100)]
     public string? IdempotencyKey { get; set; }
 }
+
+public class UsageRecordResponse
+{
+    public long Id { get; set; }
+    public Guid ApiKeyId { get; set; }
+    public string Endpoint { get; set; } = default!;
+    public int StatusCode { get; set; }
+    public DateTime OccurredAt { get; set; }
+}

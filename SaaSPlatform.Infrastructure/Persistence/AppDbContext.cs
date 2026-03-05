@@ -14,6 +14,7 @@ public class AppDbContext : DbContext
     public DbSet<ApiKey> ApiKeys => Set<ApiKey>();
     public DbSet<UsageRecord> UsageRecords => Set<UsageRecord>();
     public DbSet<OrganizationUsageMonthly> OrganizationUsageMonthly => Set<OrganizationUsageMonthly>();
+    public DbSet<UserUsageMonthly> UserUsageMonthly => Set<UserUsageMonthly>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,6 +41,13 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(k => k.OrganizationId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<ApiKey>()
+            .HasOne(k => k.User)
+            .WithMany()
+            .HasForeignKey(k => k.UserId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .IsRequired(false);
 
         // Fast lookup by prefix during authentication
         modelBuilder.Entity<ApiKey>()
@@ -76,6 +84,28 @@ public class AppDbContext : DbContext
 
         // EF Core optimistic concurrency
         modelBuilder.Entity<OrganizationUsageMonthly>()
+            .Property(m => m.RowVersion)
+            .IsConcurrencyToken();
+
+        // ── UserUsageMonthly ─────────────────────────────────────────────
+        modelBuilder.Entity<UserUsageMonthly>()
+            .HasOne(m => m.User)
+            .WithMany()
+            .HasForeignKey(m => m.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<UserUsageMonthly>()
+            .HasOne(m => m.Organization)
+            .WithMany()
+            .HasForeignKey(m => m.OrganizationId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        // Unique: one row per user per month
+        modelBuilder.Entity<UserUsageMonthly>()
+            .HasIndex(m => new { m.UserId, m.YearMonth })
+            .IsUnique();
+
+        modelBuilder.Entity<UserUsageMonthly>()
             .Property(m => m.RowVersion)
             .IsConcurrencyToken();
     }

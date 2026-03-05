@@ -50,8 +50,8 @@ public static class DatabaseSeeder
 
         var plans = new List<SubscriptionPlan>
         {
-            new() { Name = "Basic", ApiCallsPerMonth = 10_000,  StorageLimitMb = 500   },
-            new() { Name = "Pro",   ApiCallsPerMonth = 100_000, StorageLimitMb = 5_000 },
+            new() { Name = "Basic", ApiCallsPerMonth = 10_000, ApiCallsPerUser = 200,   StorageLimitMb = 500   },
+            new() { Name = "Pro",   ApiCallsPerMonth = 100_000, ApiCallsPerUser = 2_000, StorageLimitMb = 5_000 },
         };
 
         db.SubscriptionPlans.AddRange(plans);
@@ -94,10 +94,12 @@ public static class DatabaseSeeder
 
         var subscription = new OrganizationSubscription
         {
-            OrganizationId = AcmeOrgId,
-            PlanId         = proPlan.Id,
-            StartAt        = now.AddDays(-1),
-            EndAt          = now.AddYears(1)
+            OrganizationId  = AcmeOrgId,
+            PlanId          = proPlan.Id,
+            ApiCallsMonthly = proPlan.ApiCallsPerMonth,
+            ApiCallsPerUser = proPlan.ApiCallsPerUser,
+            StartAt         = now.AddDays(-1),
+            EndAt           = now.AddYears(1)
         };
 
         db.OrganizationSubscriptions.Add(subscription);

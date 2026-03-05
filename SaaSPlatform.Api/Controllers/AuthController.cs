@@ -13,11 +13,11 @@ public class AuthController : ControllerBase
 
     public AuthController(IAuthService auth) => _auth = auth;
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterRequest req, CancellationToken ct)
+    [HttpPost("users/create")]
+    public async Task<IActionResult> CreateUser(CreateUserRequest req, CancellationToken ct)
     {
-        var result = await _auth.RegisterAsync(req, ct);
-        return Ok(ApiResponse<AuthResponse>.Ok(result, "Registered successfully."));
+        var result = await _auth.CreateUserAsync(req, ct);
+        return Ok(ApiResponse<AuthResponse>.Ok(result, "User created successfully."));
     }
 
     [HttpPost("login")]

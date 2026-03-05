@@ -18,7 +18,7 @@ public class AuthService : IAuthService
         _jwt = jwt;
     }
 
-    public async Task<AuthResponse> RegisterAsync(RegisterRequest req, CancellationToken ct)
+    public async Task<AuthResponse> CreateUserAsync(CreateUserRequest req, CancellationToken ct)
     {
         var email = req.Email.Trim().ToLowerInvariant();
 
@@ -26,16 +26,18 @@ public class AuthService : IAuthService
         var exists = await _db.Users.AnyAsync(x => x.Email == email, ct);
         if (exists) throw new InvalidOperationException("Email already registered.");
 
-        // Validate the organization exists (since it's seeded)
+        // Validate the organization exists (must be pre-seeded)
         var org = await _db.Organizations.FindAsync(new object[] { req.OrganizationId }, ct);
         if (org is null) throw new InvalidOperationException("Organization not found.");
 
-        // Create the user as an Admin for this seeded organization
+        // Map role: 1 = Admin, 2 = Member
+        var role = req.Role == 1 ? UserRole.Admin : UserRole.Member;
+
         var user = new User
         {
             OrganizationId = org.Id,
             Email = email,
-            Role = UserRole.Admin, // Since org is pre-made, they represent the org Admin
+            Role = role,
             Password = BCrypt.Net.BCrypt.HashPassword(req.Password)
         };
         _db.Users.Add(user);
